@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { Shipment, TrackingUpdate } from "@prisma/client";
+
+type ShipmentWithUpdates = Shipment & { updates: TrackingUpdate[] };
 
 export async function GET() {
-  const shipments = await prisma.shipment.findMany({
+  const shipments: ShipmentWithUpdates[] = await prisma.shipment.findMany({
     orderBy: { createdAt: "desc" },
     include: {
       updates: {
