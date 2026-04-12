@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Shipment {
+  id             String           @id @default(cuid())
+  trackingCode   String           @unique @map("tracking_code")
+  origin         String
+  destination    String
+  receiverName   String           @map("receiver_name")
+  receiverPhone  String           @default("") @map("receiver_phone")
+  senderName     String           @default("") @map("sender_name")
+  senderPhone    String           @default("") @map("sender_phone")
+  packageDesc    String           @default("") @map("package_desc")
+  packageWeight  String           @default("") @map("package_weight")
+  priority         String           @default("standard")
+  paymentType      String           @default("prepaid") @map("payment_type")
+  paymentStatus    String           @default("paid") @map("payment_status")
+  amount           Float            @default(0)
+  paymentMethod    String           @default("cash") @map("payment_method")
+  paymentReference String           @default("") @map("payment_reference")
+  deliveryLocked   Boolean          @default(false) @map("delivery_locked")
+  currentStatus    String           @default("picked_up") @map("current_status")
+  route            Json
+  currentStep      Int              @default(0) @map("current_step")
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updates          TrackingUpdate[]
+
+  @@map("shipments")
+}
+
+model TrackingUpdate {
+  id          String   @id @default(cuid())
+  shipmentId  String   @map("shipment_id")
+  location    String
+  status      String
+  description String
+  timestamp   DateTime @default(now())
+  shipment    Shipment @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+
+  @@map("tracking_updates")
+}
