@@ -1,25 +1,15 @@
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
+import { cookies } from "next/headers";
+import LogoutButton from "@/components/LogoutButton";
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const headersList = await headers();
-  const authCookie = headersList.get("cookie") || "";
-  const isAuth = authCookie.includes("admin_auth=true");
+  const cookieStore = await cookies();
+  const isAuth = cookieStore.get("admin_auth")?.value === "true";
 
-  if (
-    !isAuth &&
-    !headersList.get("x-admin-auth")
-  ) {
-    // We'll handle auth on the client side
-  }
-
-  return (
+  return isAuth ? (
     <div className="min-h-screen bg-slate-50 overflow-x-hidden">
       <header className="bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 py-3.5">
@@ -81,11 +71,15 @@ export default async function AdminLayout({
               >
                 Tracker
               </a>
+              <div className="hidden sm:block w-px h-5 bg-slate-700 mx-1" />
+              <LogoutButton />
             </nav>
           </div>
         </div>
       </header>
       <main className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8">{children}</main>
     </div>
+  ) : (
+    <>{children}</>
   );
 }
