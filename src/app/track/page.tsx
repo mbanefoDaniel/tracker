@@ -28,6 +28,9 @@ interface Shipment {
   packageWeight: string;
   priority: string;
   currentStatus: string;
+  paymentType: string;
+  paymentStatus: string;
+  amount: number;
   route: string[];
   currentStep: number;
   createdAt: string;
@@ -267,15 +270,15 @@ export default function TrackPage() {
                     <p className="text-sm font-bold text-slate-900">{shipment.receiverName}</p>
                   </div>
                   {shipment.packageDesc && (
-                    <div className="bg-slate-50 rounded-xl p-3.5">
+                    <div className="bg-blue-50 rounded-xl p-3.5 border border-blue-100">
                       <div className="flex items-center gap-2 mb-1.5">
-                        <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                        <svg className="w-3.5 h-3.5 text-blue-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                         </svg>
-                        <p className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Package</p>
+                        <p className="text-[10px] text-blue-500 uppercase tracking-widest font-semibold">What&apos;s Being Sent</p>
                       </div>
-                      <p className="text-sm font-bold text-slate-900">{shipment.packageDesc}</p>
-                      {shipment.packageWeight && <p className="text-xs text-slate-500 mt-0.5">{shipment.packageWeight}</p>}
+                      <p className="text-sm font-bold text-blue-900">{shipment.packageDesc}</p>
+                      {shipment.packageWeight && <p className="text-xs text-blue-600 mt-0.5">Weight: {shipment.packageWeight}</p>}
                     </div>
                   )}
                 </div>
@@ -297,6 +300,22 @@ export default function TrackPage() {
                         })}
                       </span>
                     </p>
+                  </div>
+                )}
+
+                {shipment.paymentType === "cod" && shipment.paymentStatus !== "paid" && shipment.amount > 0 && (
+                  <div className="mb-6 flex items-center gap-3 px-4 py-3.5 bg-amber-50 border border-amber-200 rounded-xl">
+                    <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-amber-800">Payment Required</p>
+                      <p className="text-xs text-amber-600 mt-0.5">
+                        Amount due: <span className="font-bold text-amber-800">${shipment.amount.toFixed(2)}</span>
+                      </p>
+                    </div>
                   </div>
                 )}
 

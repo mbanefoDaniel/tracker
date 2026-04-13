@@ -28,18 +28,18 @@ export default function CreateShipmentPage() {
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
   const [error, setError] = useState("");
-  const [cities, setCities] = useState<string[]>([]);
 
   useEffect(() => {
     fetch("/api/routes")
       .then((res) => res.json())
       .then((data) => {
         setRoutes(data.routes);
-        setCities(data.cities);
         setPageLoading(false);
       })
       .catch(() => setPageLoading(false));
   }, []);
+
+  const originCities = [...new Set(routes.map((r) => r.origin))].sort();
 
   const availableDestinations = origin
     ? routes.filter((r) => r.origin === origin).map((r) => r.destination)
@@ -122,7 +122,7 @@ export default function CreateShipmentPage() {
               className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-slate-900 text-sm bg-slate-50"
             >
               <option value="">Select origin city</option>
-              {cities.map((city) => (
+              {originCities.map((city) => (
                 <option key={city} value={city}>
                   {city}
                 </option>
@@ -343,7 +343,7 @@ export default function CreateShipmentPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                Amount (₦)
+                Amount ($)
               </label>
               <input
                 type="number"

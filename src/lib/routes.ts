@@ -1,12 +1,22 @@
 export type RouteKey = string;
 
 export const ROUTES: Record<RouteKey, string[]> = {
-  "Lagos-Abuja": ["Lagos", "Ibadan", "Ilorin", "Abuja"],
-  "Abuja-Lagos": ["Abuja", "Lokoja", "Ibadan", "Lagos"],
-  "Lagos-Port Harcourt": ["Lagos", "Benin City", "Warri", "Port Harcourt"],
-  "Port Harcourt-Lagos": ["Port Harcourt", "Warri", "Benin City", "Lagos"],
-  "Abuja-Port Harcourt": ["Abuja", "Lokoja", "Benin City", "Port Harcourt"],
-  "Port Harcourt-Abuja": ["Port Harcourt", "Benin City", "Lokoja", "Abuja"],
+  "New York, NY-Los Angeles, CA": ["New York, NY", "Philadelphia, PA", "Columbus, OH", "Indianapolis, IN", "Kansas City, MO", "Denver, CO", "Las Vegas, NV", "Los Angeles, CA"],
+  "Los Angeles, CA-New York, NY": ["Los Angeles, CA", "Las Vegas, NV", "Denver, CO", "Kansas City, MO", "Indianapolis, IN", "Columbus, OH", "Philadelphia, PA", "New York, NY"],
+  "New York, NY-Chicago, IL": ["New York, NY", "Philadelphia, PA", "Pittsburgh, PA", "Columbus, OH", "Chicago, IL"],
+  "Chicago, IL-New York, NY": ["Chicago, IL", "Columbus, OH", "Pittsburgh, PA", "Philadelphia, PA", "New York, NY"],
+  "New York, NY-Miami, FL": ["New York, NY", "Washington, DC", "Charlotte, NC", "Jacksonville, FL", "Miami, FL"],
+  "Miami, FL-New York, NY": ["Miami, FL", "Jacksonville, FL", "Charlotte, NC", "Washington, DC", "New York, NY"],
+  "Los Angeles, CA-Chicago, IL": ["Los Angeles, CA", "Phoenix, AZ", "Albuquerque, NM", "Dallas, TX", "Memphis, TN", "Chicago, IL"],
+  "Chicago, IL-Los Angeles, CA": ["Chicago, IL", "Memphis, TN", "Dallas, TX", "Albuquerque, NM", "Phoenix, AZ", "Los Angeles, CA"],
+  "Chicago, IL-Miami, FL": ["Chicago, IL", "Indianapolis, IN", "Nashville, TN", "Atlanta, GA", "Miami, FL"],
+  "Miami, FL-Chicago, IL": ["Miami, FL", "Atlanta, GA", "Nashville, TN", "Indianapolis, IN", "Chicago, IL"],
+  "Los Angeles, CA-Miami, FL": ["Los Angeles, CA", "Phoenix, AZ", "Dallas, TX", "Houston, TX", "New Orleans, LA", "Miami, FL"],
+  "Miami, FL-Los Angeles, CA": ["Miami, FL", "New Orleans, LA", "Houston, TX", "Dallas, TX", "Phoenix, AZ", "Los Angeles, CA"],
+  "New York, NY-Houston, TX": ["New York, NY", "Washington, DC", "Charlotte, NC", "Atlanta, GA", "Houston, TX"],
+  "Houston, TX-New York, NY": ["Houston, TX", "Atlanta, GA", "Charlotte, NC", "Washington, DC", "New York, NY"],
+  "Chicago, IL-Houston, TX": ["Chicago, IL", "Memphis, TN", "Dallas, TX", "Houston, TX"],
+  "Houston, TX-Chicago, IL": ["Houston, TX", "Dallas, TX", "Memphis, TN", "Chicago, IL"],
 };
 
 export function getRoute(origin: string, destination: string): string[] | null {

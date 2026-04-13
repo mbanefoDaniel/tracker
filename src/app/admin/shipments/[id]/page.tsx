@@ -282,7 +282,7 @@ export default function ShipmentDetailPage() {
             <div className="bg-slate-50 rounded-xl p-3.5">
               <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Amount</p>
               <p className="text-sm font-semibold text-slate-900 mt-1">
-                {shipment.amount > 0 ? `₦${shipment.amount.toLocaleString()}` : "—"}
+                {shipment.amount > 0 ? `$${shipment.amount.toLocaleString()}` : "—"}
               </p>
             </div>
             <div className="bg-slate-50 rounded-xl p-3.5">
