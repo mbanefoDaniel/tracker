@@ -13,7 +13,7 @@ export async function GET() {
         take: 20,
         include: {
           shipment: {
-            select: { trackingCode: true, receiverName: true },
+            select: { id: true, trackingCode: true, receiverName: true },
           },
         },
       }),

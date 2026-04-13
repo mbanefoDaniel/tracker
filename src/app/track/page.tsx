@@ -328,11 +328,11 @@ export default function TrackPage() {
               <h3 className="text-xs font-bold text-slate-900 mb-4 uppercase tracking-widest">
                 Route
               </h3>
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-2 -mx-1 px-1">
+              <div className="flex flex-wrap items-center gap-1.5 pb-2">
                 {shipment.route.map((stop: string, idx: number) => (
                   <div key={idx} className="flex items-center">
                     <div
-                      className={`flex-shrink-0 px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
+                      className={`px-3 sm:px-3.5 py-2 rounded-lg text-[11px] sm:text-xs font-bold transition-all ${
                         idx <= shipment.currentStep
                           ? idx === shipment.currentStep
                             ? "bg-orange-500 text-white"

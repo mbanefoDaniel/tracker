@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
 
 export default async function AdminLayout({
@@ -15,7 +16,7 @@ export default async function AdminLayout({
         <div className="max-w-7xl mx-auto px-4 py-3.5">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div className="flex items-center gap-4 w-full sm:w-auto justify-between">
-              <a href="/" className="flex items-center gap-3">
+              <Link href="/" className="flex items-center gap-3">
                 <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.141-.504 1.125-1.125l-.536-10.318A1.125 1.125 0 0019.143 6H5.357a1.125 1.125 0 00-1.118 1.007L3.75 14.25" />
@@ -27,50 +28,50 @@ export default async function AdminLayout({
                   </span>
                   <p className="text-[10px] text-slate-400 -mt-0.5 tracking-widest uppercase">Shipment Tracking</p>
                 </div>
-              </a>
+              </Link>
               <span className="text-[10px] bg-slate-800 text-orange-400 px-2.5 py-1 rounded-md font-bold uppercase tracking-widest border border-slate-700">
                 Admin
               </span>
             </div>
-            <nav className="flex items-center gap-1 flex-wrap w-full sm:w-auto">
-              <a
+            <nav className="flex items-center gap-1 w-full sm:w-auto overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+              <Link
                 href="/admin/dashboard"
-                className="text-xs font-medium text-slate-400 hover:text-white transition-colors px-3 py-2 rounded-md hover:bg-slate-800"
+                className="text-xs font-medium text-slate-400 hover:text-white transition-colors px-2.5 sm:px-3 py-2 rounded-md hover:bg-slate-800 whitespace-nowrap"
               >
                 Dashboard
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/admin/shipments"
-                className="text-xs font-medium text-slate-400 hover:text-white transition-colors px-3 py-2 rounded-md hover:bg-slate-800"
+                className="text-xs font-medium text-slate-400 hover:text-white transition-colors px-2.5 sm:px-3 py-2 rounded-md hover:bg-slate-800 whitespace-nowrap"
               >
                 Shipments
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/admin/activity"
-                className="text-xs font-medium text-slate-400 hover:text-white transition-colors px-3 py-2 rounded-md hover:bg-slate-800"
+                className="text-xs font-medium text-slate-400 hover:text-white transition-colors px-2.5 sm:px-3 py-2 rounded-md hover:bg-slate-800 whitespace-nowrap"
               >
                 Activity
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/admin/settings"
-                className="text-xs font-medium text-slate-400 hover:text-white transition-colors px-3 py-2 rounded-md hover:bg-slate-800"
+                className="text-xs font-medium text-slate-400 hover:text-white transition-colors px-2.5 sm:px-3 py-2 rounded-md hover:bg-slate-800 whitespace-nowrap"
               >
                 Settings
-              </a>
+              </Link>
               <div className="hidden sm:block w-px h-5 bg-slate-700 mx-1" />
-              <a
+              <Link
                 href="/admin/create"
-                className="text-xs font-semibold px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+                className="text-xs font-semibold px-3 sm:px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors whitespace-nowrap"
               >
                 + New
-              </a>
+              </Link>
               <div className="hidden sm:block w-px h-5 bg-slate-700 mx-1" />
-              <a
+              <Link
                 href="/track"
-                className="text-xs font-medium text-slate-500 hover:text-slate-300 transition-colors px-3 py-2 rounded-md hover:bg-slate-800"
+                className="text-xs font-medium text-slate-500 hover:text-slate-300 transition-colors px-2.5 sm:px-3 py-2 rounded-md hover:bg-slate-800 whitespace-nowrap"
               >
                 Tracker
-              </a>
+              </Link>
               <div className="hidden sm:block w-px h-5 bg-slate-700 mx-1" />
               <LogoutButton />
             </nav>

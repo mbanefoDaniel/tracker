@@ -319,11 +319,11 @@ export default function ShipmentDetailPage() {
       {/* Route Visualization */}
       <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6">
         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Route Progress</p>
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 -mx-1 px-1">
+        <div className="flex flex-wrap items-center gap-1.5 pb-2">
           {shipment.route.map((stop: string, idx: number) => (
             <div key={idx} className="flex items-center">
               <div
-                className={`flex-shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                className={`px-3 sm:px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all ${
                   idx <= shipment.currentStep
                     ? idx === shipment.currentStep
                       ? "bg-orange-500 text-white shadow-sm"
